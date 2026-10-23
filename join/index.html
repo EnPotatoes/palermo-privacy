@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Join a room · Mia Nixta sto Palermo</title>
+  <link rel="stylesheet" href="../style.css">
+  <style>
+    .code { font-size: 3rem; letter-spacing: .3em; font-weight: 700; color: #f2b84b; margin: .3em 0; }
+    .open { display: inline-block; padding: .9em 1.6em; border-radius: 14px; background: #f2b84b; color: #1a1405;
+      font-weight: 700; text-decoration: none; min-height: 44px; }
+  </style>
+</head>
+<body>
+<main>
+  <h1 lang="el">Μπες στο δωμάτιο</h1>
+  <p lang="el">Κωδικός δωματίου:</p>
+  <p class="code" id="code" aria-live="polite">------</p>
+  <p><a class="open" id="open" href="#" lang="el">Άνοιξε το παιχνίδι · Open the game</a></p>
+  <p lang="el">Αν δεν ανοίξει, άνοιξε το «Μια Νύχτα στο Παλέρμο», πάτησε «Μπες σε δωμάτιο» και γράψε τον κωδικό.</p>
+  <hr>
+  <h2>Join the room</h2>
+  <p>If the game does not open, open Mia Nixta sto Palermo, tap “Join a room” and type the code above.</p>
+  <p class="muted"><a href="../">Privacy policy</a> · <a href="../el/" hreflang="el" lang="el">Πολιτική απορρήτου</a></p>
+</main>
+<script>
+  // The code is only shown and passed to the app; the page sends nothing anywhere.
+  var code = (new URLSearchParams(location.search).get('code') || '').toUpperCase();
+  if (/^[A-HJ-NP-Z2-9]{6}$/.test(code)) {
+    document.getElementById('code').textContent = code;
+    var store = 'https://play.google.com/store/apps/details?id=com.mianixta.palermo';
+    var android = /Android/i.test(navigator.userAgent);
+    document.getElementById('open').href = android
+      ? 'intent://join?code=' + code + '#Intent;scheme=palermo;package=com.mianixta.palermo;S.browser_fallback_url=' +
+        encodeURIComponent(store) + ';end'
+      : 'palermo://join?code=' + code;
+  }
+</script>
+</body>
+</html>
