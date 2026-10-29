@@ -22,6 +22,8 @@
   <hr>
   <h2>Join the room</h2>
   <p>If the game does not open, open Mia Nixta sto Palermo, tap “Join a room” and type the code above.</p>
+  <p><a href="../download/">Don't have the game? Download it for Android</a> ·
+    <a href="../download/" lang="el">Δεν έχεις το παιχνίδι; Κατέβασέ το</a></p>
   <p class="muted"><a href="../">Privacy policy</a> · <a href="../el/" hreflang="el" lang="el">Πολιτική απορρήτου</a></p>
 </main>
 <script>
@@ -29,7 +31,8 @@
   var code = (new URLSearchParams(location.search).get('code') || '').toUpperCase();
   if (/^[A-HJ-NP-Z2-9]{6}$/.test(code)) {
     document.getElementById('code').textContent = code;
-    var store = 'https://play.google.com/store/apps/details?id=com.mianixta.palermo';
+    // Without the game installed, Android opens the download page (it holds the one download link).
+    var store = new URL('../download/', location.href).href;
     var android = /Android/i.test(navigator.userAgent);
     document.getElementById('open').href = android
       ? 'intent://join?code=' + code + '#Intent;scheme=palermo;package=com.mianixta.palermo;S.browser_fallback_url=' +
