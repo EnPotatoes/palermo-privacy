@@ -8,7 +8,9 @@ private, so these files are copied into the separate public repository
 Files: index.html (English), el/index.html (Greek), join/index.html (the page invite
 links and room QR codes open: it shows the code and opens the app), download/index.html
 (the page the app's "Share the game" QR code opens, Greek and English; its Download button
-is the one place the APK address lives, see tool/release_apk.md), style.css, .nojekyll.
+is the one place the APK address lives, see tool/release_apk.md), version.json (the newest
+version and the oldest that still works, read by the app's update check; raise it with every
+release, tool/check_version.sh), style.css, .nojekyll.
 
 The APK itself is not in this folder: it is attached to a GitHub Release of
 palermo-privacy as palermo.apk, so
